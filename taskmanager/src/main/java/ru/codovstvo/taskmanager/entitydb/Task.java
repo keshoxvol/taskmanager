@@ -15,6 +15,7 @@ public class Task {
     private String description;
     private String tag;
     private int status;
+    // Заменить статусы на строковые
 
 //tag
     //self
