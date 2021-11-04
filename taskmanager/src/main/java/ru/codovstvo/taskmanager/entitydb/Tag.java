@@ -1,35 +1,26 @@
-package ru.codovstvo.taskmanager.entitydb;
+// package ru.codovstvo.taskmanager.entitydb;
 
-public class Tag {
-    private Integer id;
-    private String title;
+// import java.util.HashSet;
+// import java.util.Set;
 
-    /**
-     * @return Integer return the id
-     */
-    public Integer getId() {
-        return id;
-    }
+// import javax.persistence.Entity;
+// import javax.persistence.GeneratedValue;
+// import javax.persistence.GenerationType;
+// import javax.persistence.Id;
 
-    /**
-     * @param id the id to set
-     */
-    public void setId(Integer id) {
-        this.id = id;
-    }
+// @Entity
+// public class Tag {
+//     @Id
+// 	@GeneratedValue(strategy=GenerationType.AUTO)
+//     private Integer id;
+//     private String title;
+//     // private Set<Note> notes = new HashSet<>();
+//     private Set<Task> tasks = new HashSet<>();
 
-    /**
-     * @return String return the title
-     */
-    public String getTitle() {
-        return title;
-    }
+//     public Tag(String title){
+//         this.title = title;
+//     }
 
-    /**
-     * @param title the title to set
-     */
-    public void setTitle(String title) {
-        this.title = title;
-    }
+//     public Tag(){}
 
-}
+// }
