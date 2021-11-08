@@ -1,37 +1,66 @@
-// package ru.codovstvo.taskmanager.controllers;
+package ru.codovstvo.taskmanager.controllers;
 
-// import org.springframework.web.bind.annotation.GetMapping;
-// import org.springframework.web.bind.annotation.RequestParam;
-// import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-// import ru.codovstvo.taskmanager.entitydb.Task;
-// import ru.codovstvo.taskmanager.repo.TaskRepo;
+import ru.codovstvo.taskmanager.entitydb.ImportanceStatus;
+import ru.codovstvo.taskmanager.entitydb.Status;
+import ru.codovstvo.taskmanager.entitydb.Task;
+import ru.codovstvo.taskmanager.repo.ImportanceStatusRepo;
+import ru.codovstvo.taskmanager.repo.StatusRepo;
+import ru.codovstvo.taskmanager.repo.TaskRepo;
 
-// import org.springframework.beans.factory.annotation.Autowired;
-// import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-// @RestController
-// public class TaskController {
-//     @Autowired
-// 	private TaskRepo taskRepo;
+@RestController
+@RequestMapping(path = "/task")
+public class TaskController {
+    @Autowired
+	private TaskRepo taskRepo;
+	
+	@Autowired
+	private StatusRepo statusRepo;
 
-// 	// @PostMapping("/addtask")
-// 	// public void addTask(@RequestParam(value = "title") String title,
-// 	// 					@RequestParam(value = "tag") String tag,
-// 	// 					@RequestParam(value = "description") String description) {
-// 	// 	taskRepo.save(new Task(title, tag, description));
-// 	// }
+	@Autowired
+	private ImportanceStatusRepo importanceStatusRepo;
 
+	@PostMapping("/add")
+	public String addTask(@RequestParam(value = "title") String title,
+						@RequestParam(value = "status", defaultValue = "wait") String strStatus,
+						@RequestParam(value = "importancestatus", defaultValue = "green") String strImportanceStatus) {
+		Status status = statusRepo.findByTitle(strStatus);
+		ImportanceStatus importanceStatus = importanceStatusRepo.findByTitle(strImportanceStatus);
+		if(status == null || importanceStatus == null){
+			return "Status not found, task ignored";
+		} else {
+			taskRepo.save(new Task(title, status, importanceStatus));
+			return "200";
+		}
+	}
 
-//     @GetMapping("/gettasks")
-// 	public Iterable<Task> getAllTask(){
-// 		Iterable<Task> tasks = taskRepo.findAll();
-// 		return tasks;
-// 	}
+	@PostMapping("/deleteall")
+	public void delAlltasks(){
+		taskRepo.deleteAll();
+	}
+	
+	@PostMapping("/deletebyid")
+	public void deletebyid(@RequestParam(value = "id") Long id){
+		taskRepo.deleteById(id);
+	}
 
-// 	@GetMapping("/getbystatus")
-// 	public Iterable<Task> getByStatus(@RequestParam(value = "status") int status){
-// 		Iterable<Task> tasks = taskRepo.findAllByStatus(status);
-// 		return tasks;
-// 	}
-// }
+    @GetMapping("/getall")
+	public Iterable<Task> getAllTask(){
+		Iterable<Task> tasks = taskRepo.findAll();
+		return tasks;
+	}
+
+	@GetMapping("/getbystatus")
+	public Iterable<Task> getByStatus(@RequestParam(value = "status") String title){
+		Status status = statusRepo.findByTitle(title);
+		Iterable<Task> tasks = taskRepo.findAllByStatus(status);
+		return tasks;
+	}
+}

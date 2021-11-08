@@ -1,0 +1,10 @@
+.taskimage{
+    position: absolute;
+    width: 600px;
+    height: 100px;
+    left: 660px;
+    top: 204px;
+
+    background: #8D5454;
+    border-radius: 15px;
+}

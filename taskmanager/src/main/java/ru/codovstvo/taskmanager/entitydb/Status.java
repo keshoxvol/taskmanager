@@ -1,39 +1,31 @@
 package ru.codovstvo.taskmanager.entitydb;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
-public class Tag {
+public class Status {
     @Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     @Column(unique = true)
     private String title;
     
-    @ManyToMany(mappedBy = "tags")
-    private Set<Task> tasks = new HashSet<>();
+    @OneToMany(targetEntity = Task.class)
+    private List<Task> tasksInStatusTable = new ArrayList<>();
 
-    public Tag(String title){
+    public Status(String title){
         this.title = title;
     }
 
-    public Tag(){}
-
-
-    /**
-     * @return Long return the id
-     */
-    public Long getId() {
-        return id;
-    }
+    public Status(){}
 
     /**
      * @param id the id to set
@@ -57,17 +49,11 @@ public class Tag {
     }
 
     /**
-     * @return Set<Task> return the tasks
+     * @param tasksInStatusTable the tasksInStatusTable to set
      */
-    public Set<Task> getTasks() {
-        return tasks;
-    }
-
-    /**
-     * @param tasks the tasks to set
-     */
-    public void setTasks(Set<Task> tasks) {
-        this.tasks = tasks;
+    public void setTasksInStatusTable(List<Task> tasksInStatusTable) {
+        this.tasksInStatusTable = tasksInStatusTable;
     }
 
 }
+

@@ -1,11 +1,11 @@
-// package ru.codovstvo.taskmanager.repo;
+package ru.codovstvo.taskmanager.repo;
 
-// import org.springframework.data.repository.CrudRepository;
-// import org.springframework.data.repository.query.Param;
+import org.springframework.data.repository.CrudRepository;
 
-// import ru.codovstvo.taskmanager.entitydb.Task;
+import ru.codovstvo.taskmanager.entitydb.Status;
+import ru.codovstvo.taskmanager.entitydb.Task;
 
-// public interface TaskRepo extends CrudRepository<Task, Long> {
-//     Task findById(@Param("id") int id);
-//     Iterable<Task> findAllByStatus(@Param("status") int status);
-// }
+public interface TaskRepo extends CrudRepository<Task, Long> {
+    void deleteById(Long id);
+    Iterable<Task> findAllByStatus(Status status);
+}
