@@ -14,7 +14,7 @@ public class StatusController {
     @Autowired
 	private StatusRepo statusRepo;
 
-    @GetMapping("/getall")
+    @GetMapping("/all")
     public Iterable<Status> getAllStatus(){
         Iterable<Status> statuses = statusRepo.findAll();
         return statuses;

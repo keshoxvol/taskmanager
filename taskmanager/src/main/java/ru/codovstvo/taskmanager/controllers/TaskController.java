@@ -51,16 +51,23 @@ public class TaskController {
 		taskRepo.deleteById(id);
 	}
 
-    @GetMapping("/getall")
+    @GetMapping("/all")
 	public Iterable<Task> getAllTask(){
 		Iterable<Task> tasks = taskRepo.findAll();
 		return tasks;
 	}
 
-	@GetMapping("/getbystatus")
+	@GetMapping("/bystatus")
 	public Iterable<Task> getByStatus(@RequestParam(value = "status") String title){
 		Status status = statusRepo.findByTitle(title);
 		Iterable<Task> tasks = taskRepo.findAllByStatus(status);
+		return tasks;
+	}
+
+	@GetMapping("/byimportancestatus")
+	public Iterable<Task> getByImportanceStatus(@RequestParam(value = "importancestatus") String title){
+		ImportanceStatus importanceStatus = importanceStatusRepo.findByTitle(title);
+		Iterable<Task> tasks = taskRepo.findAllByImportanceStatus(importanceStatus);
 		return tasks;
 	}
 }

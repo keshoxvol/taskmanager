@@ -26,7 +26,7 @@ public class TagController {
 		tagRepo.deleteById(id);
 	}
 
-    @GetMapping("/getall")
+    @GetMapping("/all")
     public Iterable<Tag> getAllStatus(){
         Iterable<Tag> tags = tagRepo.findAll();
         return tags;

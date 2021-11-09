@@ -57,6 +57,7 @@ public class Task {
         this.id = id;
     }
 
+    
     /**
      * @return String return the title
      */
@@ -115,5 +116,4 @@ public class Task {
     public void setImportanceStatus(ImportanceStatus importanceStatus) {
         this.importanceStatus = importanceStatus;
     }
-
 }
