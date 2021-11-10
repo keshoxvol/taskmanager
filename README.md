@@ -1,6 +1,5 @@
 # taskmanager
 
-
 endpoints:
 
 /sys
