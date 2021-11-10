@@ -1,7 +1,10 @@
+import TaskpanelNavbar from "../taskpanelnavbar";
+
 export const Taskpanel = () =>{
     return (
         <div className='taskpanel'>
-            <div>fdsfffffffffffffffffffffffffff</div>
+            <TaskpanelNavbar/>
+            <div className='tasktable'>fdsfffffffffffffffffffffffffff</div>
         </div>
     )
 }
