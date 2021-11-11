@@ -1,7 +1,7 @@
 export const Navbar = () =>{
     return (
         <div className='navbar'>
-            <div> Все | Ожидание | В работе | Выполнено </div>
+            <div> Задачи | Заметки </div>
         </div>
     )
 }
