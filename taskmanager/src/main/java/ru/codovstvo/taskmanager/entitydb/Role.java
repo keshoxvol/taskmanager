@@ -10,23 +10,16 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Status {
+public class Role {
     @Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
     private String title;
+
+    @OneToMany(targetEntity = Customer.class)
+    private Set<Customer> customers = new HashSet<>();
     
-    @OneToMany(targetEntity = Task.class)
-    private Set<Task> tasks = new HashSet<>();
-
-
-    public Status(String title){
-        this.title = title;
-    }
-
-    public Status(){}
-
 
     /**
      * @return Long return the id
@@ -57,18 +50,17 @@ public class Status {
     }
 
     /**
-     * @return Set<Task> return the tasks
+     * @return Set<Customer> return the customers
      */
-    public Set<Task> getTasks() {
-        return tasks;
+    public Set<Customer> getCustomers() {
+        return customers;
     }
 
     /**
-     * @param tasks the tasks to set
+     * @param customers the customers to set
      */
-    public void setTasks(Set<Task> tasks) {
-        this.tasks = tasks;
+    public void setCustomers(Set<Customer> customers) {
+        this.customers = customers;
     }
 
 }
-

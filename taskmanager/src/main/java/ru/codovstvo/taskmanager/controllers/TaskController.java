@@ -5,9 +5,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import ru.codovstvo.taskmanager.entitydb.ImportanceStatus;
+import ru.codovstvo.taskmanager.entitydb.Project;
 import ru.codovstvo.taskmanager.entitydb.Status;
 import ru.codovstvo.taskmanager.entitydb.Task;
 import ru.codovstvo.taskmanager.repo.ImportanceStatusRepo;
+import ru.codovstvo.taskmanager.repo.ProjectRepo;
 import ru.codovstvo.taskmanager.repo.StatusRepo;
 import ru.codovstvo.taskmanager.repo.TaskRepo;
 
@@ -23,6 +25,9 @@ public class TaskController {
 	
 	@Autowired
 	private StatusRepo statusRepo;
+	
+	@Autowired
+	private ProjectRepo projectRepo;
 
 	@Autowired
 	private ImportanceStatusRepo importanceStatusRepo;
@@ -30,13 +35,16 @@ public class TaskController {
 	@PostMapping("/add")
 	public String addTask(@RequestParam(value = "title") String title,
 						@RequestParam(value = "status", defaultValue = "wait") String strStatus,
-						@RequestParam(value = "importancestatus", defaultValue = "green") String strImportanceStatus) {
+						@RequestParam(value = "importancestatus", defaultValue = "green") String strImportanceStatus,
+						@RequestParam(value = "project") String strProject) {
+		Project project = projectRepo.findByTitle(strProject);
 		Status status = statusRepo.findByTitle(strStatus);
 		ImportanceStatus importanceStatus = importanceStatusRepo.findByTitle(strImportanceStatus);
-		if(status == null || importanceStatus == null){
+
+		if(project == null || status == null || importanceStatus == null){
 			return "Status not found, task ignored";
 		} else {
-			taskRepo.save(new Task(title, status, importanceStatus));
+			taskRepo.save(new Task(title, project, status, importanceStatus));
 			return "200";
 		}
 	}

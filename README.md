@@ -27,13 +27,21 @@ endpoints:
   /buimportancestatus
   /all
 
-/tag
-  /add
-  /deletebyid
-  /all
-
 /status
   /all
 
 /importancestatus
   /all
+
+
+/Company
+  /add
+  /getby
+
+/Department
+
+/Project
+
+/Customer
+
+/
