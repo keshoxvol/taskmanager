@@ -36,12 +36,24 @@ endpoints:
 
 /Company
   /add
-  /getby
+  /getowner
+  /getmembership
+  /getdepartments
 
 /Department
+  /add
+  /getmanager
+  /getmembership
+  /getprojects
 
 /Project
+  /add
+  /getmanager
+  /getmembership
+  /gettasks
 
 /Customer
+  /add
+  /getbyid
+  
 
-/

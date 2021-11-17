@@ -7,7 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
+
+//ROLE_USER
+//ROLE_ADMIN
 
 @Entity
 public class Role {
@@ -17,9 +20,17 @@ public class Role {
 
     private String title;
 
-    @OneToMany(targetEntity = Customer.class)
+    @ManyToMany(mappedBy = "roles")
     private Set<Customer> customers = new HashSet<>();
+
+
+    public Role(Long id,String title){
+        this.id = id;
+        this.title = title;
+    }
     
+    public Role(){}
+   
 
     /**
      * @return Long return the id

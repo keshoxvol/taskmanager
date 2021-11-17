@@ -33,8 +33,9 @@ public class Project {
     private Set<Task> tasks = new HashSet<>();
 
 
-    public Project(String title){
+    public Project(String title, Department department){
         this.title = title;
+        this.department = department;
     }
 
     public Project(){}

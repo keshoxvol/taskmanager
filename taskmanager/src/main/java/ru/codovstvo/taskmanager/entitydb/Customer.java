@@ -1,5 +1,6 @@
 package ru.codovstvo.taskmanager.entitydb;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -8,7 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -18,9 +18,9 @@ public class Customer {
     private Long id;
 
     private String title;
-    
-    @ManyToOne
-    private Role role;
+
+    @ManyToMany
+    private Set<Role> roles;
 
     private String email;
     private String password;
@@ -50,6 +50,11 @@ public class Customer {
     private Set<Session> sessions = new HashSet<>();
 
     
+    public Customer(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+
     public Customer(){}
 
 
@@ -82,17 +87,10 @@ public class Customer {
     }
 
     /**
-     * @return Role return the role
+     * @param roles the roles to set
      */
-    public Role getRole() {
-        return role;
-    }
-
-    /**
-     * @param role the role to set
-     */
-    public void setRole(Role role) {
-        this.role = role;
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
     /**
@@ -107,13 +105,6 @@ public class Customer {
      */
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    /**
-     * @return String return the password
-     */
-    public String getPassword() {
-        return password;
     }
 
     /**
@@ -221,7 +212,6 @@ public class Customer {
         this.selfTasks = selfTasks;
     }
 
-
     /**
      * @return Set<Session> return the sessions
      */
@@ -234,6 +224,14 @@ public class Customer {
      */
     public void setSessions(Set<Session> sessions) {
         this.sessions = sessions;
+    }
+
+
+    /**
+     * @return Set<Role> return the roles
+     */
+    public Set<Role> getRoles() {
+        return roles;
     }
 
 }

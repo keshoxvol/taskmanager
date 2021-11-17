@@ -31,8 +31,9 @@ public class Department {
     @OneToMany(targetEntity = Project.class)
     private Set<Project> projects = new HashSet<>();
 
-    public Department(String title){
+    public Department(String title, Company company){
         this.title = title;
+        this.company = company;
     }
 
     public Department(){}
