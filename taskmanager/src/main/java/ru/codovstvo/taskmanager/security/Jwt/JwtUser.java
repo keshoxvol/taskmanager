@@ -1,11 +1,11 @@
-package ru.codovstvo.taskmanager.security.Jvt;
+package ru.codovstvo.taskmanager.security.Jwt;
 
 import java.util.Collection;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-public class JvtUser implements UserDetails{
+public class JwtUser implements UserDetails{
 
     private Long id;
     private String username;
@@ -15,7 +15,7 @@ public class JvtUser implements UserDetails{
     private Collection<? extends GrantedAuthority> authorities;
     private boolean enabled;
 
-    public JvtUser(Long id, String username, String email, String password, Collection<? extends GrantedAuthority> authorities, boolean enabled){
+    public JwtUser(Long id, String username, String email, String password, Collection<? extends GrantedAuthority> authorities, boolean enabled){
         this.id = id;
         this.username = username;
         this.email = email;

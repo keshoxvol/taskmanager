@@ -1,4 +1,4 @@
-package ru.codovstvo.taskmanager.security.Jvt;
+package ru.codovstvo.taskmanager.security.Jwt;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,12 +11,12 @@ import ru.codovstvo.taskmanager.entitydb.Role;
 import ru.codovstvo.taskmanager.entitydb.User;
 import ru.codovstvo.taskmanager.entitydb.UserStatus;
 
-public class JvtUserFactory {
+public class JwtUserFactory {
 
-    public JvtUserFactory(){}
+    public JwtUserFactory(){}
 
-    public static JvtUser create(User user){
-        return new JvtUser(
+    public static JwtUser create(User user){
+        return new JwtUser(
             user.getId(),
             user.getUsername(),
             user.getEmail(),

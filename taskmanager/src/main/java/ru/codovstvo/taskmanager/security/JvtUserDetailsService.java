@@ -6,8 +6,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import ru.codovstvo.taskmanager.entitydb.User;
-import ru.codovstvo.taskmanager.security.Jvt.JvtUser;
-import ru.codovstvo.taskmanager.security.Jvt.JvtUserFactory;
+import ru.codovstvo.taskmanager.security.Jwt.JwtUser;
+import ru.codovstvo.taskmanager.security.Jwt.JwtUserFactory;
 
 public class JvtUserDetailsService implements UserDetailsService {
 
@@ -21,7 +21,7 @@ public class JvtUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException("Пользователь не найден");
         }
         
-        JvtUser jvtUser = JvtUserFactory.create(user);
+        JwtUser jvtUser = JwtUserFactory.create(user);
         return jvtUser;
     }
     
