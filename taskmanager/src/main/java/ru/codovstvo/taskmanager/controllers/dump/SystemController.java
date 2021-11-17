@@ -1,4 +1,4 @@
-package ru.codovstvo.taskmanager.controllers;
+package ru.codovstvo.taskmanager.controllers.dump;
 
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;

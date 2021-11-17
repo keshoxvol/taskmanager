@@ -9,65 +9,25 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import lombok.Data;
+
+@Data
 @Entity
 public class ImportanceStatus {
     @Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
-    private String title;
+    private String importanceStatusName;
     
     @OneToMany(targetEntity = Task.class)
     private Set<Task> tasks = new HashSet<>();
 
 
-    public ImportanceStatus(String title){
-        this.title = title;
+    public ImportanceStatus(String importanceStatusName){
+        this.importanceStatusName = importanceStatusName;
     }
 
     public ImportanceStatus(){}
-
-
-    /**
-     * @return Long return the id
-     */
-    public Long getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    /**
-     * @return String return the title
-     */
-    public String getTitle() {
-        return title;
-    }
-
-    /**
-     * @param title the title to set
-     */
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    /**
-     * @return Set<Task> return the tasks
-     */
-    public Set<Task> getTasks() {
-        return tasks;
-    }
-
-    /**
-     * @param tasks the tasks to set
-     */
-    public void setTasks(Set<Task> tasks) {
-        this.tasks = tasks;
-    }
 
 }

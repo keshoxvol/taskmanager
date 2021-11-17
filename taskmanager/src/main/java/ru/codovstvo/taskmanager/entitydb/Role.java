@@ -12,66 +12,26 @@ import javax.persistence.ManyToMany;
 //ROLE_USER
 //ROLE_ADMIN
 
+import lombok.Data;
+
+@Data
 @Entity
 public class Role {
     @Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
-    private String title;
+    private String roleName;
 
     @ManyToMany(mappedBy = "roles")
-    private Set<Customer> customers = new HashSet<>();
+    private Set<User> users = new HashSet<>();
 
 
-    public Role(Long id,String title){
+    public Role(Long id,String roleName){
         this.id = id;
-        this.title = title;
+        this.roleName = roleName;
     }
     
     public Role(){}
-   
-
-    /**
-     * @return Long return the id
-     */
-    public Long getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    /**
-     * @return String return the title
-     */
-    public String getTitle() {
-        return title;
-    }
-
-    /**
-     * @param title the title to set
-     */
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    /**
-     * @return Set<Customer> return the customers
-     */
-    public Set<Customer> getCustomers() {
-        return customers;
-    }
-
-    /**
-     * @param customers the customers to set
-     */
-    public void setCustomers(Set<Customer> customers) {
-        this.customers = customers;
-    }
 
 }
