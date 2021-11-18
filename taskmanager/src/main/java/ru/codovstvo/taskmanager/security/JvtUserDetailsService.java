@@ -4,11 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
-import ru.codovstvo.taskmanager.entitydb.User;
+import ru.codovstvo.taskmanager.entitydb.UserEntity;
 import ru.codovstvo.taskmanager.security.Jwt.JwtUser;
 import ru.codovstvo.taskmanager.security.Jwt.JwtUserFactory;
 
+@Service
 public class JvtUserDetailsService implements UserDetailsService {
 
     @Autowired
@@ -16,7 +18,7 @@ public class JvtUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userService.findByUsername(username);
+        UserEntity user = userService.findByUsername(username);
         if (user == null){
             throw new UsernameNotFoundException("Пользователь не найден");
         }

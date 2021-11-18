@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import ru.codovstvo.taskmanager.entitydb.User;
+import ru.codovstvo.taskmanager.entitydb.UserEntity;
 import ru.codovstvo.taskmanager.repo.UserRepo;
 
 @RestController
@@ -16,8 +16,8 @@ public class CustomerController {
     private UserRepo userRepo;
 
     @GetMapping(value = "all")
-    public Iterable<User> getAllCustomer(){
-        Iterable<User> customers = userRepo.findAll();
+    public Iterable<UserEntity> getAllCustomer(){
+        Iterable<UserEntity> customers = userRepo.findAll();
         return customers;
     }
     

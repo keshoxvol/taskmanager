@@ -2,7 +2,7 @@ package ru.codovstvo.taskmanager.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
-import ru.codovstvo.taskmanager.entitydb.User;
+import ru.codovstvo.taskmanager.entitydb.UserEntity;
 import ru.codovstvo.taskmanager.entitydb.UserStatus;
 
 @Data
@@ -13,8 +13,8 @@ public class AdminUserDto {
     private String email;
     private String status;
 
-    public User toUser() {
-        User user = new User();
+    public UserEntity toUser() {
+        UserEntity user = new UserEntity();
         user.setId(id);
         user.setUsername(username);
         user.setEmail(email);
@@ -22,7 +22,7 @@ public class AdminUserDto {
         return user;
     }
 
-    public static AdminUserDto fromUser(User user) {
+    public static AdminUserDto fromUser(UserEntity user) {
         AdminUserDto adminUserDto = new AdminUserDto();
         adminUserDto.setId(user.getId());
         adminUserDto.setUsername(user.getUsername());

@@ -27,10 +27,10 @@ public class Project {
     private Department department;
 
     @ManyToOne
-    private User manager;
+    private UserEntity manager;
 
     @ManyToMany(mappedBy = "projectsMembership")
-    private Set<User> memberships = new HashSet<>();
+    private Set<UserEntity> memberships = new HashSet<>();
 
     @OneToMany(targetEntity = Task.class)
     private Set<Task> tasks = new HashSet<>();

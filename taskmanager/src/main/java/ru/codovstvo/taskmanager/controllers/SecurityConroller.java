@@ -16,26 +16,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import ru.codovstvo.taskmanager.dto.AuthenticationRequestDto;
-import ru.codovstvo.taskmanager.entitydb.User;
+import ru.codovstvo.taskmanager.entitydb.UserEntity;
 import ru.codovstvo.taskmanager.security.UserService;
 import ru.codovstvo.taskmanager.security.Jwt.JwtTokenProvider;
 
 @RestController
 @RequestMapping(value = "/auth/")
 public class SecurityConroller {
-    @Autowired
     private AuthenticationManager authenticationManager;
-    @Autowired
     private JwtTokenProvider jwtTokenProvider;
-    @Autowired
     private UserService userService;
+
+    @Autowired
+    public SecurityConroller(AuthenticationManager authenticationManager, JwtTokenProvider jwtTokenProvider, UserService userService) {
+        this.authenticationManager = authenticationManager;
+        this.jwtTokenProvider = jwtTokenProvider;
+        this.userService = userService;
+    }
 
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody AuthenticationRequestDto requestDto) {
         try {
             String username = requestDto.getUsername();
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, requestDto.getPassword()));
-            User user = userService.findByUsername(username);
+            UserEntity user = userService.findByUsername(username);
 
             if (user == null) {
                 throw new UsernameNotFoundException("User with username: " + username + " not found");

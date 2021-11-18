@@ -26,10 +26,10 @@ public class Department {
     private Company company;
 
     @ManyToOne
-    private User manager;
+    private UserEntity manager;
 
     @ManyToMany(mappedBy = "departmentsMembership")
-    private Set<User> memberships = new HashSet<>();
+    private Set<UserEntity> memberships = new HashSet<>();
 
     @OneToMany(targetEntity = Project.class)
     private Set<Project> projects = new HashSet<>();

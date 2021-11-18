@@ -26,10 +26,10 @@ public class Company {
     private Set<Department> departments = new HashSet<>();
 
     @ManyToOne
-    private User owner;
+    private UserEntity owner;
 
     @ManyToMany(mappedBy = "companiesMembership")
-    private Set<User> memberships = new HashSet<>();
+    private Set<UserEntity> memberships = new HashSet<>();
 
 
     public Company(String companyName){

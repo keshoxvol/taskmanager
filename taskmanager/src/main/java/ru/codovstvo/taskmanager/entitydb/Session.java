@@ -18,7 +18,7 @@ public class Session {
     private Long id;
 
     @ManyToOne
-    private User user;
+    private UserEntity user;
 
     private String token;
 

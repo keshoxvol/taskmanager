@@ -11,6 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
@@ -25,6 +26,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+@Component
 public class JwtTokenProvider {
 
     @Value("${jwt.token.secret}")
@@ -34,13 +36,14 @@ public class JwtTokenProvider {
     private long validityInMilliseconds;
 
     @Autowired
-    UserDetailsService userDetailsService;
+    private UserDetailsService userDetailsService;
 
     @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder(){
+    public BCryptPasswordEncoder passwordEncoder(){
         BCryptPasswordEncoder  bCryptPasswordEncoder = new BCryptPasswordEncoder();
         return bCryptPasswordEncoder;
     }
+    
     @PostConstruct
     protected void init(){
         secret = Base64.getEncoder().encodeToString(secret.getBytes());

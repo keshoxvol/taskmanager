@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import ru.codovstvo.taskmanager.dto.AdminUserDto;
-import ru.codovstvo.taskmanager.entitydb.User;
+import ru.codovstvo.taskmanager.entitydb.UserEntity;
 import ru.codovstvo.taskmanager.security.UserService;
 
 @RestController
@@ -20,7 +20,7 @@ public class AdminRestController {
 
     @GetMapping(value = "users/{id}")
     public ResponseEntity<AdminUserDto> getUserById(@PathVariable(name = "id") Long id) {
-        User user = userService.findById(id);
+        UserEntity user = userService.findById(id);
 
         if (user == null) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);

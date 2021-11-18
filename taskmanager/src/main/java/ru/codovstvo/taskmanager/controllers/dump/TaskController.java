@@ -4,13 +4,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import ru.codovstvo.taskmanager.entitydb.ImportanceStatus;
-import ru.codovstvo.taskmanager.entitydb.Project;
-import ru.codovstvo.taskmanager.entitydb.Status;
 import ru.codovstvo.taskmanager.entitydb.Task;
-import ru.codovstvo.taskmanager.repo.ImportanceStatusRepo;
 import ru.codovstvo.taskmanager.repo.ProjectRepo;
-import ru.codovstvo.taskmanager.repo.StatusRepo;
 import ru.codovstvo.taskmanager.repo.TaskRepo;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,13 +19,8 @@ public class TaskController {
 	private TaskRepo taskRepo;
 	
 	@Autowired
-	private StatusRepo statusRepo;
-	
-	@Autowired
 	private ProjectRepo projectRepo;
 
-	@Autowired
-	private ImportanceStatusRepo importanceStatusRepo;
 
 	// @PostMapping("/add")
 	// public String addTask(@RequestParam(value = "title") String title,

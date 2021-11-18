@@ -8,14 +8,14 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import ru.codovstvo.taskmanager.entitydb.Role;
-import ru.codovstvo.taskmanager.entitydb.User;
+import ru.codovstvo.taskmanager.entitydb.UserEntity;
 import ru.codovstvo.taskmanager.entitydb.UserStatus;
 
 public class JwtUserFactory {
 
     public JwtUserFactory(){}
 
-    public static JwtUser create(User user){
+    public static JwtUser create(UserEntity user){
         return new JwtUser(
             user.getId(),
             user.getUsername(),

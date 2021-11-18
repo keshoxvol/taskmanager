@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-import ru.codovstvo.taskmanager.entitydb.User;
+import ru.codovstvo.taskmanager.entitydb.UserEntity;
 
-public interface UserRepo extends CrudRepository<User, Long> {
-    User findByUsername(String username);
-    List<User> findAll();
+public interface UserRepo extends CrudRepository<UserEntity, Long> {
+    UserEntity findByUsername(String username);
+    List<UserEntity> findAll();
 }

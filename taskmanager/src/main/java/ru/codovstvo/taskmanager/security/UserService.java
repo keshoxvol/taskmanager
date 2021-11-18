@@ -9,7 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import ru.codovstvo.taskmanager.entitydb.Role;
-import ru.codovstvo.taskmanager.entitydb.User;
+import ru.codovstvo.taskmanager.entitydb.UserEntity;
 import ru.codovstvo.taskmanager.entitydb.UserStatus;
 import ru.codovstvo.taskmanager.repo.RoleRepo;
 import ru.codovstvo.taskmanager.repo.UserRepo;
@@ -24,7 +24,7 @@ public class UserService {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
-    public User register(User user){
+    public UserEntity register(UserEntity user){
         Role roleUser = roleRepo.findByRoleName("ROLE_USER");
         Set<Role> userRoles = new HashSet<>();
         userRoles.add(roleUser);
@@ -33,23 +33,23 @@ public class UserService {
         user.setRoles(userRoles);
         user.setUserStatus(UserStatus.ACTIVE);
 
-        User registeredUser = userRepo.save(user);
+        UserEntity registeredUser = userRepo.save(user);
 
         return registeredUser;
     }
 
-    public List<User> getAll(){
-        List<User> users = userRepo.findAll();
+    public List<UserEntity> getAll(){
+        List<UserEntity> users = userRepo.findAll();
         return users;
     }
 
-    public User findByUsername(String username){
-        User user = userRepo.findByUsername(username);
+    public UserEntity findByUsername(String username){
+        UserEntity user = userRepo.findByUsername(username);
         return user;
     }
     
-    public User findById(Long id){
-        User user = userRepo.findById(id).orElse(null);
+    public UserEntity findById(Long id){
+        UserEntity user = userRepo.findById(id).orElse(null);
         return user;
     }
     

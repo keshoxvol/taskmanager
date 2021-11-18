@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,7 +16,7 @@ import lombok.Data;
 
 @Data
 @Entity
-public class User {
+public class UserEntity {
     @Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
@@ -24,6 +26,7 @@ public class User {
     @ManyToMany
     private Set<Role> roles;
 
+    @Enumerated(EnumType.STRING)
     private UserStatus userStatus;
 
     private String email;
@@ -59,6 +62,6 @@ public class User {
     //     this.password = password;
     // }
 
-    // public User(){}
+    public UserEntity(){}
 
 }
