@@ -9,10 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
-//ROLE_USER
-//ROLE_ADMIN
-
-import lombok.Data;
+// import lombok.Data;
 
 // @Data
 @Entity

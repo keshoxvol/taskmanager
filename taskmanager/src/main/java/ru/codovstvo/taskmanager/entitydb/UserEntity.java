@@ -1,6 +1,5 @@
 package ru.codovstvo.taskmanager.entitydb;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -33,22 +32,6 @@ public class UserEntity {
     private String email;
     private String password;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
     @OneToMany(targetEntity = Company.class)
     private Set<Company> companyOwner;
 
@@ -73,9 +56,10 @@ public class UserEntity {
     @OneToMany(targetEntity = Session.class)
     private Set<Session> sessions;
 
-    public UserEntity(String username, String password) {
+    public UserEntity(String username, String password, String email) {
         this.username = username;
         this.password = password;
+        this.email = email;
     }
 
     public UserEntity(){}

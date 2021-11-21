@@ -15,9 +15,9 @@ import ru.codovstvo.taskmanager.security.JwtTokenProvider;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private JwtTokenProvider jwtTokenProvider;
 
-    private static final String LOGIN_ENDPOINT = "/auth/login";
-    private static final String REGISTER_ENDPOINT = "/auth/register";
-    private static final String TEST_ENDPOINT = "/auth/test";
+    private static final String AUTH_ENDPOINTS = "/auth/**";
+    private static final String USER_ENDPOINTS = "/user/**";
+    // private static final String TEST_ENDPOINT = "/auth/test";
 
     @Autowired
     public SecurityConfig(JwtTokenProvider jwtTokenProvider) {
@@ -39,9 +39,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers(LOGIN_ENDPOINT).permitAll()
-                .antMatchers(REGISTER_ENDPOINT).permitAll()
-                .antMatchers(TEST_ENDPOINT).hasRole("USER")
+                .antMatchers(AUTH_ENDPOINTS).permitAll()
+                .antMatchers(USER_ENDPOINTS).hasRole("USER")
                 .anyRequest().authenticated()
                 .and()
                 .apply(new JwtConfigurer(jwtTokenProvider));

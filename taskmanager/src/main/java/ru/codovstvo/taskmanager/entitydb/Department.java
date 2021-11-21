@@ -1,6 +1,5 @@
 package ru.codovstvo.taskmanager.entitydb;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -29,10 +28,10 @@ public class Department {
     private UserEntity manager;
 
     @ManyToMany(mappedBy = "departmentsMembership")
-    private Set<UserEntity> memberships = new HashSet<>();
+    private Set<UserEntity> memberships;
 
     @OneToMany(targetEntity = Project.class)
-    private Set<Project> projects = new HashSet<>();
+    private Set<Project> projects;
 
     public Department(String departmentName, Company company){
         this.departmentName = departmentName;

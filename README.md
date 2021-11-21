@@ -15,45 +15,9 @@
 
 endpoints:
 
-/sys
-  /defaultvaluesinStatus
-  /defaultvaluesinImportanceStatus
+/auth
+  /login
+  /register
 
-/task
-  /add
-  /deleteall
-  /deletebyid
-  /bystatus
-  /buimportancestatus
-  /all
-
-/status
-  /all
-
-/importancestatus
-  /all
-
-
-/Company
-  /add
-  /getowner
-  /getmembership
-  /getdepartments
-
-/Department
-  /add
-  /getmanager
-  /getmembership
-  /getprojects
-
-/Project
-  /add
-  /getmanager
-  /getmembership
-  /gettasks
-
-/Customer
-  /add
-  /getbyid
-  
-
+/user
+  /companiesmembership
