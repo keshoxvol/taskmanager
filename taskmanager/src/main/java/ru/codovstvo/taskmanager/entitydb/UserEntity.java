@@ -6,6 +6,7 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,7 +24,7 @@ public class UserEntity {
 
     private String username;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
 
     @Enumerated(EnumType.STRING)
@@ -32,35 +33,50 @@ public class UserEntity {
     private String email;
     private String password;
 
-    @OneToMany(targetEntity = Company.class)
-    private Set<Company> companyOwner = new HashSet<>();
 
-    @ManyToMany
-    private Set<Company> companiesMembership = new HashSet<>();
 
-    @OneToMany(targetEntity = Department.class)
-    private Set<Department> departmentsManager = new HashSet<>();
 
-    @ManyToMany
-    private Set<Department> departmentsMembership = new HashSet<>();
 
-    @OneToMany(targetEntity = Project.class)
-    private Set<Project> projectsManager = new HashSet<>();
 
-    @ManyToMany
-    private Set<Project> projectsMembership = new HashSet<>();
 
-    @OneToMany(targetEntity = Task.class)
-    private Set<Task> selfTasks = new HashSet<>();
 
-    @OneToMany(targetEntity = Session.class)
-    private Set<Session> sessions = new HashSet<>();
+
+
+
+
+
+
+
 
     
-    // public User(String email, String password) {
-    //     this.email = email;
-    //     this.password = password;
-    // }
+    @OneToMany(targetEntity = Company.class)
+    private Set<Company> companyOwner;
+
+    @ManyToMany
+    private Set<Company> companiesMembership;
+
+    @OneToMany(targetEntity = Department.class)
+    private Set<Department> departmentsManager;
+
+    @ManyToMany
+    private Set<Department> departmentsMembership;
+
+    @OneToMany(targetEntity = Project.class)
+    private Set<Project> projectsManager;
+
+    @ManyToMany
+    private Set<Project> projectsMembership;
+
+    @OneToMany(targetEntity = Task.class)
+    private Set<Task> selfTasks;
+
+    @OneToMany(targetEntity = Session.class)
+    private Set<Session> sessions;
+
+    public UserEntity(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 
     public UserEntity(){}
 

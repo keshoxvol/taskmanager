@@ -1,4 +1,4 @@
-package ru.codovstvo.taskmanager.security.Jwt;
+package ru.codovstvo.taskmanager.security;
 
 import java.util.ArrayList;
 import java.util.List;

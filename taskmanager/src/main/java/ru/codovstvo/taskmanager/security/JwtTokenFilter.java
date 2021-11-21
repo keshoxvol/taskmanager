@@ -1,4 +1,4 @@
-package ru.codovstvo.taskmanager.security.Jwt;
+package ru.codovstvo.taskmanager.security;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;

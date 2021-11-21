@@ -1,4 +1,4 @@
-package ru.codovstvo.taskmanager.security;
+package ru.codovstvo.taskmanager.Service;
 
 import java.util.HashSet;
 import java.util.List;
@@ -28,13 +28,10 @@ public class UserService {
         Role roleUser = roleRepo.findByRoleName("ROLE_USER");
         Set<Role> userRoles = new HashSet<>();
         userRoles.add(roleUser);
-
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRoles(userRoles);
         user.setUserStatus(UserStatus.ACTIVE);
-
         UserEntity registeredUser = userRepo.save(user);
-
         return registeredUser;
     }
 

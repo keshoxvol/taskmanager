@@ -8,21 +8,21 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 
-import ru.codovstvo.taskmanager.security.Jwt.JwtConfigurer;
-import ru.codovstvo.taskmanager.security.Jwt.JwtTokenProvider;
+import ru.codovstvo.taskmanager.security.JwtConfigurer;
+import ru.codovstvo.taskmanager.security.JwtTokenProvider;
 
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    @Autowired
     private JwtTokenProvider jwtTokenProvider;
 
-    private static final String ADMIN_ENDPOINT = "/api/v1/admin/**";
     private static final String LOGIN_ENDPOINT = "/auth/login";
+    private static final String REGISTER_ENDPOINT = "/auth/register";
+    private static final String TEST_ENDPOINT = "/auth/test";
 
-    // @Autowired
-    // public SecurityConfig(JwtTokenProvider jwtTokenProvider) {
-    //     this.jwtTokenProvider = jwtTokenProvider;
-    // }
+    @Autowired
+    public SecurityConfig(JwtTokenProvider jwtTokenProvider) {
+        this.jwtTokenProvider = jwtTokenProvider;
+    }
 
     @Bean
     @Override
@@ -34,12 +34,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .httpBasic().disable()
+                .cors().disable()
                 .csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
                 .antMatchers(LOGIN_ENDPOINT).permitAll()
-                .antMatchers(ADMIN_ENDPOINT).hasRole("ADMIN")
+                .antMatchers(REGISTER_ENDPOINT).permitAll()
+                .antMatchers(TEST_ENDPOINT).hasRole("USER")
                 .anyRequest().authenticated()
                 .and()
                 .apply(new JwtConfigurer(jwtTokenProvider));

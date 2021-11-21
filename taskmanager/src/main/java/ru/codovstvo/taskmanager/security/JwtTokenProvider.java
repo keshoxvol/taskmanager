@@ -1,4 +1,4 @@
-package ru.codovstvo.taskmanager.security.Jwt;
+package ru.codovstvo.taskmanager.security;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
+// import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -18,6 +18,7 @@ import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import ru.codovstvo.taskmanager.Service.JvtUserDetailsService;
 import ru.codovstvo.taskmanager.entitydb.Role;
 
 import java.util.ArrayList;
@@ -36,7 +37,7 @@ public class JwtTokenProvider {
     private long validityInMilliseconds;
 
     @Autowired
-    private UserDetailsService userDetailsService;
+    private JvtUserDetailsService userDetailsService;
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder(){
@@ -82,12 +83,16 @@ public class JwtTokenProvider {
             Jws<Claims> claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(token);
 
             if (claims.getBody().getExpiration().before(new Date())) {
+                System.out.println("JWT token is expired");
                 return false;
             }
 
             return true;
         } catch (JwtException | IllegalArgumentException e) {
-            throw new JwtException("JWT token is expired or invalid");
+            // throw new JwtException("JWT token is expired or invalid");
+            System.out.println("JWT token is invalid");
+            return false;
+            
         }
     }
 

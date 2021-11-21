@@ -1,9 +1,9 @@
 package ru.codovstvo.taskmanager.entitydb;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,7 +14,7 @@ import javax.persistence.ManyToMany;
 
 import lombok.Data;
 
-@Data
+// @Data
 @Entity
 public class Role {
     @Id
@@ -23,8 +23,8 @@ public class Role {
 
     private String roleName;
 
-    @ManyToMany(mappedBy = "roles")
-    private Set<UserEntity> users = new HashSet<>();
+    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
+    private Set<UserEntity> users;
 
 
     public Role(Long id,String roleName){
@@ -33,5 +33,48 @@ public class Role {
     }
     
     public Role(){}
+
+
+    /**
+     * @return Long return the id
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    /**
+     * @return String return the roleName
+     */
+    public String getRoleName() {
+        return roleName;
+    }
+
+    /**
+     * @param roleName the roleName to set
+     */
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
+
+    /**
+     * @return Set<UserEntity> return the users
+     */
+    public Set<UserEntity> getUsers() {
+        return users;
+    }
+
+    /**
+     * @param users the users to set
+     */
+    public void setUsers(Set<UserEntity> users) {
+        this.users = users;
+    }
 
 }
